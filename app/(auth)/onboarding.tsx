@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     paddingHorizontal: 24,
     zIndex: 200,
+    gap: 12,
   },
   title: {
     fontFamily: "Sora-SemiBold",
