@@ -1,6 +1,7 @@
 import {
   Dimensions,
   ImageBackground,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,6 +13,11 @@ const { height } = Dimensions.get("window");
 export default function OnboardingScreen() {
   return (
     <>
+      <StatusBar
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
+      />
       <ImageBackground
         source={require("@/assets/images/onboardingBackground.png")}
         style={styles.backgroundImage}
