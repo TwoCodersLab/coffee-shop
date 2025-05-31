@@ -1,3 +1,4 @@
+import { useOnboardingLogic } from "@/hooks/useOnboardingLogic";
 import {
   Dimensions,
   ImageBackground,
@@ -11,6 +12,8 @@ import {
 const { height } = Dimensions.get("window");
 
 export default function OnboardingScreen() {
+  const { handleGetStarted } = useOnboardingLogic();
+
   return (
     <>
       <StatusBar
@@ -33,7 +36,7 @@ export default function OnboardingScreen() {
           Welcome to our cozy coffee corner, where{"\n"}
           every cup is a delightful for you.
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleGetStarted}>
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
       </View>

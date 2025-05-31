@@ -5,7 +5,7 @@ export const useOnboardingLogic = () => {
   const router = useRouter();
 
   const handleGetStarted = () => {
-    router.replace("/onboarding");
+    router.replace("/home");
   };
 
   return {
