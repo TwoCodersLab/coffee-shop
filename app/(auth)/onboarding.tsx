@@ -1,3 +1,4 @@
+import { colors } from "@/constants/colors";
 import { useOnboardingLogic } from "@/hooks/useOnboardingLogic";
 import {
   Dimensions,
@@ -85,11 +86,11 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     letterSpacing: 0.14,
     textAlign: "center",
-    color: "#AFAFAF",
+    color: colors.subtitle,
     marginBottom: 32,
   },
   button: {
-    backgroundColor: "#C57A50",
+    backgroundColor: colors.buttonBackground,
     paddingVertical: 16,
     paddingHorizontal: 32,
     borderRadius: 14,
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0,
-    color: "white",
+    color: colors.white,
     textAlign: "center",
   },
 });

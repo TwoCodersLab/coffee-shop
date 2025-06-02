@@ -1,3 +1,5 @@
+import { colors } from "@/constants/colors";
+import { copies } from "@/constants/copies";
 import { useCartStore } from "@/hooks/useCartStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -50,7 +52,7 @@ export const CoffeeCard = ({ id, name, type, price, rating, image }: Props) => {
 
     Toast.show({
       type: "success",
-      text1: "Added to cart",
+      text1: copies.coffeeCard.toastAdded,
       position: "bottom",
     });
   }, [id, name, type, price, image]);
@@ -63,7 +65,7 @@ export const CoffeeCard = ({ id, name, type, price, rating, image }: Props) => {
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.type}>{type}</Text>
         <View style={styles.ratingRow}>
-          <Ionicons name="star" size={14} color="#FACC15" />
+          <Ionicons name="star" size={14} color={colors.accent} />
           <Text style={styles.ratingText}>{rating}</Text>
         </View>
       </View>
@@ -71,7 +73,7 @@ export const CoffeeCard = ({ id, name, type, price, rating, image }: Props) => {
       <View style={styles.footer}>
         <Text style={styles.price}>${price.toFixed(2)}</Text>
         <Pressable style={styles.addButton} onPress={handleAddToCart}>
-          <Ionicons name="add" size={18} color="#fff" />
+          <Ionicons name="add" size={18} color={colors.white} />
         </Pressable>
       </View>
     </TouchableOpacity>
@@ -81,11 +83,11 @@ export const CoffeeCard = ({ id, name, type, price, rating, image }: Props) => {
 const styles = StyleSheet.create({
   card: {
     width: "48%",
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     borderRadius: 16,
     padding: 12,
     marginBottom: 16,
-    shadowColor: "#000",
+    shadowColor: colors.black,
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 3,
@@ -102,11 +104,11 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#333",
+    color: colors.text,
   },
   type: {
     fontSize: 12,
-    color: "#888",
+    color: colors.grayDark,
     marginTop: 2,
   },
   ratingRow: {
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
   ratingText: {
     marginLeft: 4,
     fontSize: 12,
-    color: "#666",
+    color: colors.grayDarker,
   },
   footer: {
     flexDirection: "row",
@@ -127,10 +129,10 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#333",
+    color: colors.text,
   },
   addButton: {
-    backgroundColor: "#C67C4E",
+    backgroundColor: colors.primary,
     padding: 6,
     borderRadius: 10,
   },

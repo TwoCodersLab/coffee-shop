@@ -1,3 +1,4 @@
+import { colors } from "@/constants/colors";
 import { useCartStore } from "@/hooks/useCartStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -13,7 +14,7 @@ export const CartButton = () => {
       onPress={() => router.push("/(main)/cart")}
       style={styles.button}
     >
-      <Ionicons name="cart-outline" size={24} color="#fff" />
+      <Ionicons name="cart-outline" size={24} color={colors.white} />
       {total > 0 && (
         <View style={styles.badge}>
           <Text style={styles.badgeText}>{total}</Text>
@@ -25,7 +26,7 @@ export const CartButton = () => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#C67C4E",
+    backgroundColor: colors.primary,
     borderRadius: 12,
     marginLeft: 8,
     justifyContent: "center",
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -4,
     right: -4,
-    backgroundColor: "#FACC15",
+    backgroundColor: colors.accent,
     borderRadius: 10,
     paddingHorizontal: 5,
     paddingVertical: 1,
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   badgeText: {
-    color: "#000",
+    color: colors.black,
     fontSize: 12,
     fontWeight: "600",
   },

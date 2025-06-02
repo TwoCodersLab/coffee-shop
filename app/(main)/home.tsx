@@ -3,6 +3,7 @@ import { CoffeeCard } from "@/components/CoffeeCard";
 import { CoffeeTabSelector } from "@/components/CoffeeTabSelector";
 import { PromoBanner } from "@/components/PromoBanner";
 import { SearchBar } from "@/components/SearchBar";
+import { colors } from "@/constants/colors";
 import { ALL_COFFEE, useCoffees } from "@/hooks/useCoffees";
 import { useMemo, useState } from "react";
 import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
@@ -41,7 +42,7 @@ export default function HomeScreen() {
         <View style={styles.cardsWrapper}>
           {loading ? (
             <View style={styles.flex}>
-              <ActivityIndicator size="large" color="#C67C4E" />
+              <ActivityIndicator size="large" color={colors.primary} />
             </View>
           ) : (
             filteredCoffees.map((coffee) => (
@@ -57,7 +58,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     position: "relative",
   },
   darkBackground: {
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 220,
-    backgroundColor: "#1C1C1C",
+    backgroundColor: colors.darkBackground,
     zIndex: 0,
   },
   headerContent: {

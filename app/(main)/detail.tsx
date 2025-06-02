@@ -1,3 +1,5 @@
+import { colors } from "@/constants/colors";
+import { copies } from "@/constants/copies";
 import { useCartStore } from "@/hooks/useCartStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -80,7 +82,7 @@ export default function DetailScreen() {
         <TouchableOpacity onPress={handleBackPress}>
           <Ionicons name="chevron-back" size={24} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Detail</Text>
+        <Text style={styles.headerTitle}>{copies.detail.detail}</Text>
         <Ionicons name="heart-outline" size={24} />
       </View>
 
@@ -92,40 +94,39 @@ export default function DetailScreen() {
           <View style={styles.iconRow}>
             {["bicycle", "cafe", "cube"].map((icon) => (
               <View key={icon} style={styles.iconBox}>
-                <Ionicons name={icon as any} size={20} color="#C67C4E" />
+                <Ionicons name={icon as any} size={20} color={colors.primary} />
               </View>
             ))}
           </View>
         </View>
 
         <View style={styles.ratingRow}>
-          <Ionicons name="star" size={16} color="#FACC15" />
+          <Ionicons name="star" size={16} color={colors.accent} />
           <Text style={styles.ratingText}>{params.rating}</Text>
-          <Text style={styles.reviewCount}>(230)</Text>
+          <Text style={styles.reviewCount}>{copies.detail.reviews}</Text>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Description</Text>
+          <Text style={styles.sectionTitle}>{copies.detail.descriptionTitle}</Text>
           <Text style={styles.description}>
-            A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml
-            of espresso coffee and 85 ml of fresh milk the fo...{" "}
-            <Text style={styles.readMore}>Read More</Text>
+            {copies.detail.description}{" "}
+            <Text style={styles.readMore}>{copies.detail.readMore}</Text>
           </Text>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Size</Text>
+          <Text style={styles.sectionTitle}>{copies.detail.size}</Text>
           <View style={styles.sizeOptions}>{sizeButtons}</View>
         </View>
       </ScrollView>
 
       <View style={styles.footer}>
         <View>
-          <Text style={styles.footerLabel}>Price</Text>
+          <Text style={styles.footerLabel}>{copies.detail.price}</Text>
           <Text style={styles.footerPrice}>${priceFormatted}</Text>
         </View>
         <TouchableOpacity style={styles.buyButton} onPress={handleBuyNow}>
-          <Text style={styles.buyText}>Buy Now</Text>
+          <Text style={styles.buyText}>{copies.detail.buyNow}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -135,7 +136,7 @@ export default function DetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
   },
   header: {
     flexDirection: "row",
@@ -162,14 +163,14 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: "700",
-    color: "#333",
+    color: colors.text,
   },
   iconRow: {
     flexDirection: "row",
     gap: 10,
   },
   iconBox: {
-    backgroundColor: "#F3F3F3",
+    backgroundColor: colors.lightGray,
     borderRadius: 12,
     padding: 8,
   },
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
   },
   reviewCount: {
     marginLeft: 4,
-    color: "#888",
+    color: colors.gray,
     fontSize: 12,
   },
   section: {
@@ -196,11 +197,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   description: {
-    color: "#888",
+    color: colors.gray,
     lineHeight: 20,
   },
   readMore: {
-    color: "#C67C4E",
+    color: colors.primary,
     fontWeight: "600",
   },
   sizeOptions: {
@@ -209,7 +210,7 @@ const styles = StyleSheet.create({
   },
   sizeButton: {
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: colors.grayLight,
     borderRadius: 12,
     paddingVertical: 12,
     paddingHorizontal: 24,
@@ -218,14 +219,14 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   selectedSize: {
-    borderColor: "#C67C4E",
+    borderColor: colors.primary,
   },
   sizeText: {
     fontWeight: "500",
-    color: "#333",
+    color: colors.text,
   },
   selectedSizeText: {
-    color: "#C67C4E",
+    color: colors.primary,
     fontWeight: "700",
   },
   footer: {
@@ -233,30 +234,30 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    shadowColor: "#000",
+    shadowColor: colors.black,
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 10,
   },
   footerLabel: {
     fontSize: 12,
-    color: "#888",
+    color: colors.gray,
   },
   footerPrice: {
     fontSize: 18,
     fontWeight: "700",
   },
   buyButton: {
-    backgroundColor: "#C67C4E",
+    backgroundColor: colors.primary,
     paddingVertical: 14,
     paddingHorizontal: 32,
     borderRadius: 16,
   },
   buyText: {
-    color: "#fff",
+    color: colors.white,
     fontWeight: "600",
     fontSize: 16,
   },

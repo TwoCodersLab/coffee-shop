@@ -1,3 +1,4 @@
+import { colors } from "@/constants/colors";
 import { Pressable, ScrollView, StyleSheet, Text } from "react-native";
 
 type Props = {
@@ -39,18 +40,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
-    backgroundColor: "#eee",
+    backgroundColor: colors.grayLight,
     marginRight: 8,
   },
   selectedTab: {
-    backgroundColor: "#C67C4E",
+    backgroundColor: colors.primary,
   },
   tabText: {
     fontSize: 14,
-    color: "#555",
+    color: colors.gray,
   },
   selectedTabText: {
-    color: "#fff",
+    color: colors.white,
     fontWeight: "bold",
   },
 });
