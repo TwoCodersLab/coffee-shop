@@ -1,50 +1,87 @@
-# Welcome to your Expo app 👋
+# Coffee App ☕ – Portfolio Demo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This project is a simplified version of a real-world application, adapted specifically for use in my professional portfolio. Due to confidentiality, certain aspects have been modified or removed, and the full codebase is not publicly available.
 
-## Get started
+## 📱 About the Project
 
-1. Install dependencies
+This is a mobile coffee shop app built using [Expo](https://expo.dev/) (React Native). It allows users to:
 
-   ```bash
-   npm install
-   ```
+- Browse a list of coffee drinks
+- View detailed information about each product
+- Add items to a cart
+- Adjust quantities and checkout
+- Get toast notifications for feedback
+- Navigate through multiple screens
 
-2. Start the app
+## ⚙️ Tech Stack
 
-   ```bash
-   npx expo start
-   ```
+- **React Native** (with Expo)
+- **TypeScript**
+- **Zustand** for global state management
+- **expo-router** for navigation
+- **react-native-toast-message** for feedback
+- **Ionicons** for icons
+- **react-native-safe-area-context** for safe view rendering
 
-In the output, you'll find options to open the app in a
+## 📂 Folder Structure
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+.
+├── assets/
+│   └── images/
+├── components/
+│   ├── CartButton.tsx
+│   ├── CoffeeCard.tsx
+│   ├── CoffeeTabSelector.tsx
+│   ├── PromoBanner.tsx
+│   └── SearchBar.tsx
+├── constants/
+│   ├── colors.ts
+│   └── strings/
+│       ├── cart.ts
+│       ├── home.ts
+│       └── shared.ts
+├── hooks/
+│   └── useCartStore.ts
+├── screens/
+│   ├── HomeScreen.tsx
+│   └── CartScreen.tsx
+└── README.md
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🧑‍💻 Setup Instructions
 
-## Learn more
+1. **Clone the repo**
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+git clone https://github.com/your-username/coffee-app.git
+cd coffee-app
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. **Install dependencies**
 
-## Join the community
+```bash
+yarn install
+```
 
-Join our community of developers creating universal apps.
+3. **Start Expo**
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+yarn start
+```
+
+> Make sure you have the Expo Go app installed on your mobile device or use an emulator.
+
+## 🚧 Disclaimer
+
+- This app is based on a real commercial project and has been adapted for display purposes.
+- Some assets and business logic have been omitted or modified.
+- Not all features from the original project are included.
+
+## 📬 Contact
+
+If you’re interested in working together, feel free to reach out via [Fiverr](https://www.fiverr.com/twocoderslab/) or contact me directly through my GitHub profile.
+
+---
+
+Thanks for checking out my work!
