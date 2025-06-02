@@ -1,35 +1,82 @@
+import { useCartStore } from "@/hooks/useCartStore";
 import { Ionicons } from "@expo/vector-icons";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { useCallback } from "react";
+import {
+  Image,
+  ImageSourcePropType,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Toast from "react-native-toast-message";
 
 type Props = {
+  id: number;
   name: string;
   type: string;
   price: number;
   rating: number;
-  image: any;
+  image: ImageSourcePropType;
 };
 
-export const CoffeeCard = ({ name, type, price, rating, image }: Props) => (
-  <View style={styles.card}>
-    <Image source={image} style={styles.image} resizeMode="cover" />
+export const CoffeeCard = ({ id, name, type, price, rating, image }: Props) => {
+  const router = useRouter();
 
-    <View style={styles.infoContainer}>
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.type}>{type}</Text>
-      <View style={styles.ratingRow}>
-        <Ionicons name="star" size={14} color="#FACC15" />
-        <Text style={styles.ratingText}>{rating}</Text>
+  const handlePress = useCallback(() => {
+    router.push({
+      pathname: "/(main)/detail",
+      params: {
+        id,
+        name,
+        type,
+        price: price.toString(),
+        rating: rating.toString(),
+        image: Image.resolveAssetSource(image).uri,
+      },
+    });
+  }, [router, id, name, type, price, rating, image]);
+
+  const handleAddToCart = useCallback(() => {
+    useCartStore.getState().addItem({
+      id,
+      name,
+      type,
+      price,
+      image: Image.resolveAssetSource(image).uri,
+    });
+
+    Toast.show({
+      type: "success",
+      text1: "Added to cart",
+      position: "bottom",
+    });
+  }, [id, name, type, price, image]);
+
+  return (
+    <TouchableOpacity onPress={handlePress} style={styles.card}>
+      <Image source={image} style={styles.image} resizeMode="cover" />
+
+      <View style={styles.infoContainer}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.type}>{type}</Text>
+        <View style={styles.ratingRow}>
+          <Ionicons name="star" size={14} color="#FACC15" />
+          <Text style={styles.ratingText}>{rating}</Text>
+        </View>
       </View>
-    </View>
 
-    <View style={styles.footer}>
-      <Text style={styles.price}>${price.toFixed(2)}</Text>
-      <Pressable style={styles.addButton}>
-        <Ionicons name="add" size={18} color="#fff" />
-      </Pressable>
-    </View>
-  </View>
-);
+      <View style={styles.footer}>
+        <Text style={styles.price}>${price.toFixed(2)}</Text>
+        <Pressable style={styles.addButton} onPress={handleAddToCart}>
+          <Ionicons name="add" size={18} color="#fff" />
+        </Pressable>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   card: {

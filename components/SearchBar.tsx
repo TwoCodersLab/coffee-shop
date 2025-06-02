@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 12,
     marginBottom: 16,
+    flex: 1,
   },
   input: {
     marginLeft: 8,

@@ -2,6 +2,7 @@ import * as Font from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import Toast from "react-native-toast-message";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,5 +20,10 @@ export default function Layout() {
 
   if (!fontsLoaded) return null;
 
-  return <Slot />;
+  return (
+    <>
+      <Slot />
+      <Toast />
+    </>
+  );
 }

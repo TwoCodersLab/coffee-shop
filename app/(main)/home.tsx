@@ -1,81 +1,92 @@
-import {
-  View,
-  Text,
-  ImageBackground,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import { useOnboardingLogic } from "@/hooks/useOnboardingLogic";
+import { CartButton } from "@/components/CartButton";
+import { CoffeeCard } from "@/components/CoffeeCard";
+import { CoffeeTabSelector } from "@/components/CoffeeTabSelector";
+import { PromoBanner } from "@/components/PromoBanner";
+import { SearchBar } from "@/components/SearchBar";
+import { ALL_COFFEE, useCoffees } from "@/hooks/useCoffees";
+import { useMemo, useState } from "react";
+import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function OnboardingScreen() {
-  const { handleGetStarted } = useOnboardingLogic();
+export default function HomeScreen() {
+  const { coffees, loading, types } = useCoffees();
+  const [search, setSearch] = useState("");
+  const [selectedType, setSelectedType] = useState(ALL_COFFEE);
+
+  const filteredCoffees = useMemo(() => {
+    return coffees.filter((c) => {
+      const matchType = selectedType === ALL_COFFEE || c.type === selectedType;
+      const matchSearch = c.name.toLowerCase().includes(search.toLowerCase());
+      return matchType && matchSearch;
+    });
+  }, [coffees, selectedType, search]);
 
   return (
-    <ImageBackground
-      source={require("@/assets/images/onboardingBackground.png")}
-      style={styles.background}
-      resizeMode="cover"
-    >
-      <View style={styles.overlay} />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.darkBackground} />
+      <View style={styles.headerContent}>
+        <View style={styles.searchBarWrapper}>
+          <SearchBar value={search} onChange={setSearch} />
+          <CartButton />
+        </View>
 
-      <View style={styles.content}>
-        <Text style={styles.title}>HOME</Text>
-        <Text style={styles.subtitle}>
-          Welcome to your daily coffee connection, where every cup is a
-          delightful moment.
-        </Text>
-
-        <TouchableOpacity style={styles.button} onPress={handleGetStarted}>
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
+        <PromoBanner />
+        <CoffeeTabSelector
+          tabs={types}
+          selected={selectedType}
+          onSelect={setSelectedType}
+        />
       </View>
-    </ImageBackground>
+      <ScrollView style={styles.flex}>
+        <View style={styles.cardsWrapper}>
+          {loading ? (
+            <View style={styles.flex}>
+              <ActivityIndicator size="large" color="#C67C4E" />
+            </View>
+          ) : (
+            filteredCoffees.map((coffee) => (
+              <CoffeeCard key={coffee.id} {...coffee} />
+            ))
+          )}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
-    justifyContent: "flex-end",
+    backgroundColor: "#fff",
+    position: "relative",
   },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+  darkBackground: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 220,
+    backgroundColor: "#1C1C1C",
+    zIndex: 0,
   },
-  content: {
-    padding: 32,
+  headerContent: {
+    zIndex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  flex: {
+    flex: 1,
+  },
+  cardsWrapper: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
     alignItems: "center",
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
-  image: {
-    width: 200,
-    height: 200,
-    marginBottom: 24,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#fff",
-    textAlign: "center",
-    marginBottom: 12,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#eee",
-    textAlign: "center",
-    marginBottom: 32,
-  },
-  button: {
-    backgroundColor: "#D17842",
-    paddingVertical: 14,
-    paddingHorizontal: 32,
-    borderRadius: 30,
-    width: "100%",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
+  searchBarWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
